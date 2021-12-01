@@ -7,7 +7,7 @@
 # How To use
 
 <ul>
-<li>You will need InvMenu plugin from muqsit which can be download <a href="https://poggit.pmmp.io/r/111485/InvMenu_dev-153.phar">here</a></li>
+<li>You will need InvMenu virion from muqsit which can be download <a href="https://poggit.pmmp.io/r/111485/InvMenu_dev-153.phar">here</a></li>
 <li>Now download this repo and move into your plugins folder </li>
 
 <li>Start/Restart your server and join the server and do /cp</li>
