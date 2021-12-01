@@ -26,6 +26,7 @@ class giveCP extends Command {
   
    $sender->sendMessage("§aYou have received 1 Chest Pet");
     
+    
   }
   
   public function pet() {

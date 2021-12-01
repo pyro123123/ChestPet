@@ -1,6 +1,6 @@
 ---
 name: chestPet
-version: 0.0.1
+version: 0.1.0
 main: CaptMusix\chestPet\Main
 api: 3.23.1
 ...

@@ -16,13 +16,13 @@ class cfg {
     $this->path = Main::getInstance()->getServer()->getPluginPath()."chestPet/chest.json";
   }
   
-  public function setData(string $name,array $item) {
+  public function update(string $name,array $item) {
    
    $values = [];
    
    foreach ($item as $i) {
     $names = $i->hasCustomName() ? $i->getCustomName() : $i->getVanillaName();
-         
+     
      $ce = $i->getEnchantments();
      $ench = [];
       
@@ -45,14 +45,54 @@ class cfg {
          ]);
          
    }
-   
-    $this->config->set($name,$values);
+      
+      $count = [];
+            
+       foreach ($this->getData("",true) as $key => $value) {
+            
+         if(str_contains($key,$name)) {
+              array_push($count,$key);
+           }
+        }
+    
+    if($this->config->exists($name)) {
+      $this->config->set($name,$values);
+      $this->config->save();
+      return;
+    }
+    
+    $this->config->set($name." #".count($count) + 1,$values);
     
     $this->config->save();
+ 
   }
   
-  public function getData(string $target) {
+  public function getData(string $target = "",$all = false) {
+   
+    if($all) {
+      return $this->config->getAll();
+    }
+    
+    
     return $this->config->get($target);
+
+    
+  }
+ 
+  public function getPlayerInv(String $name) {
+    
+    $all = $this->config->getAll();
+    $result = [];
+    
+    foreach ($all as $pname => $val) {
+      
+      if(str_contains($pname,$name)) {
+        array_push($result,$val);
+      }
+      
+    }
+    
+    return $result;
   }
   
 }
