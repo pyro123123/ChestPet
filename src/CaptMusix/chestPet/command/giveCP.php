@@ -5,9 +5,11 @@ namespace CaptMusix\chestPet\command;
 use pocketmine\{
   command\Command,
   command\CommandSender,
-  item\Item,
+  item\ItemFactory,
+  item\ItemIds,
   nbt\tag\CompoundTag,
-  nbt\tag\ListTag
+  nbt\tag\ListTag,
+  Player
 };
 
 use CaptMusix\chestPet\Main;
@@ -20,6 +22,11 @@ class giveCP extends Command {
   
   public function execute(CommandSender $sender,string $label,array $args) {
 
+  if(!$sender instanceof Player) {
+    $sender->sendMessage("This command need to be run in-game");
+    return;
+  }
+  
    $inv = $sender->getInventory();
    $item = $this->pet();
    $inv->setItem($inv->firstEmpty(),$item);
@@ -30,12 +37,12 @@ class giveCP extends Command {
   }
   
   public function pet() {
-    $result = Item::get(Item::CHEST);
+    $result = ItemFactory::getInstance()->get(ItemIds::CHEST);
     $result->setCustomName("§bChest Pet");
     $tag = new CompoundTag();
-    $tag->setTag(new ListTag("chest_pet"));
+    $tag->setTag("pet",new ListTag("chest_pet"));
     $result->setCustomBlockData($tag);
-    $result->setNamedTagEntry(new ListTag("ench"));
+    $result->setNamedTag(new ListTag("ench"));
     
     return $result;
   }

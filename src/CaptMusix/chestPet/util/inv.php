@@ -165,7 +165,7 @@ class inv {
   private function create() {
     $old = $this->_getCfg()->getPlayerInv($this->player->getName());
     if(count($old) >= 26) {
-      $this->player->sendMessage("§4Unable to create new inventory");
+      $this->player->sendMessage("§4Unable to create new inventory\nDo /cp delete <number> to remove inventory");
       return;
     }
     

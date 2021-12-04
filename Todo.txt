@@ -1,0 +1,4 @@
+
+- Add open inventory command
+- Add config.yml 
+- Add message.json

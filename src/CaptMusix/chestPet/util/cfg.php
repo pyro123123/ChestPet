@@ -78,7 +78,17 @@ class cfg {
 
     
   }
+  
+  public function deleteData($name) {
+
+    $this->config->remove($name);
+    $this->config->save();
+    
+  }
  
+  public function has($name) {
+    return $this->config->exists($name);
+  }
   public function getPlayerInv(String $name) {
     
     $all = $this->config->getAll();

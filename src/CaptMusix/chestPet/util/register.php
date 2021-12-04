@@ -4,7 +4,9 @@ namespace CaptMusix\chestPet\util;
 
 use CaptMusix\chestPet\{
   command\giveCP,
-  event\chestUse
+  event\chestUse,
+  command\deleteInv
+
 };
 
 class register {
@@ -15,7 +17,7 @@ class register {
   }
   
   public static function cmd($main) {
-    $cmd = ["cp" => new giveCP()];
+    $cmd = ["cp" => new giveCP(),"cpdel" => new deleteInv()];
     
     foreach ($cmd as $name => $val) {
       $main->getServer()->getCommandMap()->register($name,$val);
